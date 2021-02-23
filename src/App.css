@@ -1,3 +1,7 @@
 .container {
   text-align: center;
+  color: #61dafb;
+  background-color: #282c34;
+  height: 100vh;
+  padding-top: 40px;
 }
