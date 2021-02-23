@@ -3,11 +3,14 @@ import React, { Component } from "react";
 import Form from "./components/Form";
 class App extends Component {
   state = {
-    contacts: ["Jude", "Mango"],
+    contacts: [],
   };
 
   formSubmitHandler = (data) => {
-    console.log(data);
+    this.setState((state) => {
+      const contacts = state.contacts.push(data);
+      return contacts;
+    });
   };
 
   render() {
@@ -18,16 +21,16 @@ class App extends Component {
         <h2>Contacts</h2>
 
         {this.state.contacts.length ? (
-          <ol>
-            {this.state.contacts.map((e) => {
+          <ul className="contact-list">
+            {this.state.contacts.map(({ name, number }) => {
               return (
-                <li key={e}>
-                  {e}
-                  <button>Delete</button>
+                <li key={name}>
+                  {`${name} ${number}`}
+                  <button className="delete-button">Delete</button>
                 </li>
               );
             })}
-          </ol>
+          </ul>
         ) : (
           "Contact list is empty"
         )}
