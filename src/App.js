@@ -5,24 +5,32 @@ import Form from "./components/Form";
 import Filter from "./components/Filter";
 class App extends Component {
   state = {
-    contacts: [
-      { name: "aa", number: 123 },
-      { name: "aaa", number: 123 },
-    ],
+    contacts: [],
   };
 
-  renderFiltered;
+  componentDidMount() {
+    const getContactArrayLS = localStorage.getItem("contacts");
+    this.setState({
+      contacts: JSON.parse(getContactArrayLS)
+        ? JSON.parse(getContactArrayLS)
+        : this.state.contacts,
+    });
+  }
+
+  componentDidUpdate() {
+    const setContactArrayLS = JSON.stringify(this.state.contacts);
+    localStorage.setItem("contacts", setContactArrayLS);
+  }
 
   uniqueId = () => {
     return shortid.generate();
   };
 
-  formSubmitHandler = (data) => {
-    console.log(this.state.contacts);
-    this.setState((state) => {
-      const contacts = state.contacts.push(data);
-      console.log(this.state.contacts);
-      return contacts;
+  formSubmitHandler = ({ name, number }) => {
+    this.setState(({ contacts }) => {
+      return {
+        contacts: [...contacts, { name, number }],
+      };
     });
   };
 
@@ -57,7 +65,7 @@ class App extends Component {
             })}
           </ul>
         ) : (
-          "Contact list is empty"
+          <p>Contact list is empty</p>
         )}
       </div>
     );
