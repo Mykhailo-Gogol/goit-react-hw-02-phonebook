@@ -17,6 +17,12 @@
   text-align: right;
 }
 
+.contact-list li p {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+}
+
 .delete-button {
   margin-left: 15px;
 }

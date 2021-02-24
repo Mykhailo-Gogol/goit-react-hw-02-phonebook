@@ -38,8 +38,10 @@ class App extends Component {
     if (value) {
       const normalizedFilter = value.toLowerCase();
 
-      this.renderFiltered = this.state.contacts.filter(({ name }) =>
-        name.toLowerCase().includes(normalizedFilter)
+      this.renderFiltered = this.state.contacts.filter(
+        ({ name, number }) =>
+          name.toLowerCase().includes(normalizedFilter) ||
+          number.toLowerCase().includes(normalizedFilter)
       );
       console.log(this.renderFiltered);
     }
@@ -58,7 +60,7 @@ class App extends Component {
             {this.state.contacts.map(({ name, number }) => {
               return (
                 <li key={this.uniqueId()}>
-                  {`${name} ${number}`}
+                  <p>{`${number} ${name} `}</p>
                   <button className="delete-button">Delete</button>
                 </li>
               );
