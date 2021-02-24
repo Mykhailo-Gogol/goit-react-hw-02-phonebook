@@ -4,17 +4,17 @@ class Filter extends Component {
     filter: "",
   };
 
-  filterInputHandler = (event) => {
-    this.props.onFilter(this.state.filter);
-    this.handleInputChange(event);
-  };
-
   handleInputChange = (event) => {
     const { name, value } = event.target;
 
     this.setState({
       [name]: value,
     });
+  };
+
+  filterInputHandler = (event) => {
+    this.handleInputChange(event);
+    this.props.onFilter(this.state.filter);
   };
 
   render() {

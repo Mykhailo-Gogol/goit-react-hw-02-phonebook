@@ -1,11 +1,12 @@
 import "./App.css";
 import React, { Component } from "react";
-import shortid from "shortid";
 import Form from "./components/Form";
 import Filter from "./components/Filter";
+import ContactList from "./components/ContactList";
 class App extends Component {
   state = {
     contacts: [],
+    filter: "",
   };
 
   componentDidMount() {
@@ -22,10 +23,6 @@ class App extends Component {
     localStorage.setItem("contacts", setContactArrayLS);
   }
 
-  uniqueId = () => {
-    return shortid.generate();
-  };
-
   formSubmitHandler = ({ name, number }) => {
     this.setState(({ contacts }) => {
       return {
@@ -36,14 +33,9 @@ class App extends Component {
 
   filterHandler = (value) => {
     if (value) {
-      const normalizedFilter = value.toLowerCase();
-
-      this.renderFiltered = this.state.contacts.filter(
-        ({ name, number }) =>
-          name.toLowerCase().includes(normalizedFilter) ||
-          number.toLowerCase().includes(normalizedFilter)
-      );
-      console.log(this.renderFiltered);
+      this.setState({
+        filter: value,
+      });
     }
   };
 
@@ -53,22 +45,8 @@ class App extends Component {
         <h1>Phonebook</h1>
         <Form onSubmit={this.formSubmitHandler} />
         <h2>Contacts</h2>
-        <Filter appState={this.state} onFilter={this.filterHandler} />
-
-        {this.state.contacts.length ? (
-          <ul className="contact-list">
-            {this.state.contacts.map(({ name, number }) => {
-              return (
-                <li key={this.uniqueId()}>
-                  <p>{`${number} ${name} `}</p>
-                  <button className="delete-button">Delete</button>
-                </li>
-              );
-            })}
-          </ul>
-        ) : (
-          <p>Contact list is empty</p>
-        )}
+        <Filter onFilter={this.filterHandler} />
+        <ContactList appState={this.state} />
       </div>
     );
   }
