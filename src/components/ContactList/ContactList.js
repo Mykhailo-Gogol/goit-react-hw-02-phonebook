@@ -14,6 +14,8 @@ class ContactList extends Component {
         name.toLowerCase().includes(normalizedFilter) ||
         number.toLowerCase().includes(normalizedFilter)
     );
+    //
+    console.log("List", filter);
     return filteredArray;
   };
 

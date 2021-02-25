@@ -32,11 +32,13 @@ class App extends Component {
   };
 
   filterHandler = (value) => {
-    if (value) {
+    if (!!value) {
       this.setState({
         filter: value,
       });
     }
+    //
+    console.log("App", this.state.filter);
   };
 
   render() {
