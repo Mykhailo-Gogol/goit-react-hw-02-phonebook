@@ -43,6 +43,7 @@ class Form extends Component {
               name="name"
               value={this.state.name}
               id={this.nameInputId}
+              required
             />
           </label>
 
@@ -54,6 +55,7 @@ class Form extends Component {
               name="number"
               value={this.state.number}
               id={this.numberInputId}
+              required
             />
           </label>
 

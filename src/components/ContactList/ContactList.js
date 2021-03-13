@@ -24,11 +24,16 @@ class ContactList extends Component {
       <>
         {this.contactFilter().length ? (
           <ul className="contact-list">
-            {this.contactFilter().map(({ name, number }) => {
+            {this.contactFilter().map(({ name, number, id }) => {
               return (
                 <li key={this.uniqueId()}>
                   <p>{`${number} ${name} `}</p>
-                  <button className="delete-button">Delete</button>
+                  <button
+                    className="delete-button"
+                    onClick={() => this.props.onDeleteContact(id)}
+                  >
+                    Delete
+                  </button>
                 </li>
               );
             })}

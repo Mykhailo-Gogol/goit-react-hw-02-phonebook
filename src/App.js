@@ -1,12 +1,15 @@
 import "./App.css";
 import React, { Component } from "react";
+import shortid from "shortid";
 import Form from "./components/Form";
 import Filter from "./components/Filter";
 import ContactList from "./components/ContactList";
+
 class App extends Component {
   state = {
     contacts: [],
     filter: "",
+    id: "",
   };
 
   componentDidMount() {
@@ -23,10 +26,12 @@ class App extends Component {
     localStorage.setItem("contacts", setContactArrayLS);
   }
 
+  userId = () => shortid.generate();
+
   formSubmitHandler = ({ name, number }) => {
     this.setState(({ contacts }) => {
       return {
-        contacts: [...contacts, { name, number }],
+        contacts: [...contacts, { name, number, id: this.userId() }],
       };
     });
   };
@@ -41,6 +46,12 @@ class App extends Component {
     console.log("App", this.state.filter);
   };
 
+  deleteUserHandler = (contactId) => {
+    this.setState(({ contacts }) => ({
+      contacts: contacts.filter(({ id }) => id !== contactId),
+    }));
+  };
+
   render() {
     return (
       <div className="container">
@@ -48,7 +59,10 @@ class App extends Component {
         <Form onSubmit={this.formSubmitHandler} />
         <h2>Contacts</h2>
         <Filter onFilter={this.filterHandler} />
-        <ContactList appState={this.state} />
+        <ContactList
+          appState={this.state}
+          onDeleteContact={this.deleteUserHandler}
+        />
       </div>
     );
   }
