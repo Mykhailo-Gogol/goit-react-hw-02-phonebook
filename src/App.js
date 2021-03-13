@@ -7,16 +7,21 @@ import ContactList from "./components/ContactList";
 
 class App extends Component {
   state = {
-    contacts: [],
+    contacts: [
+      { name: "Beck Shepherd", number: "(974) 931-1339", id: "id-1" },
+      { name: "Izaan Buckner", number: "(201) 249-1149", id: "id-2" },
+      { name: "Kaila O'Connor", number: "(829) 270-9181", id: "id-3" },
+      { name: "Asa Craig", number: "(787) 218-3261", id: "id-4" },
+      { name: "Harriett Stark", number: "(629) 735-8430", id: "id-5" },
+    ],
     filter: "",
-    id: "",
   };
 
   componentDidMount() {
     const getContactArrayLS = localStorage.getItem("contacts");
     this.setState({
       contacts: JSON.parse(getContactArrayLS)
-        ? JSON.parse(getContactArrayLS)
+        ? JSON.parse(getContactArrayLS) && this.state.contacts
         : this.state.contacts,
     });
   }

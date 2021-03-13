@@ -16,8 +16,6 @@ class Filter extends Component {
     const { filter } = this.state;
     this.handleInputChange(event);
     this.props.onFilter(filter);
-    //
-    console.log("Filter", this.state.filter);
   };
 
   blurHandler = (event) => {

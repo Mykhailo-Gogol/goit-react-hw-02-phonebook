@@ -14,8 +14,6 @@ class ContactList extends Component {
         name.toLowerCase().includes(normalizedFilter) ||
         number.toLowerCase().includes(normalizedFilter)
     );
-    //
-    console.log("List", filter);
     return filteredArray;
   };
 
@@ -27,7 +25,10 @@ class ContactList extends Component {
             {this.contactFilter().map(({ name, number, id }) => {
               return (
                 <li key={this.uniqueId()}>
-                  <p>{`${number} ${name} `}</p>
+                  <p className="contact-text">
+                    <span>{name}</span>
+                    <span>{number}</span>
+                  </p>
                   <button
                     className="delete-button"
                     onClick={() => this.props.onDeleteContact(id)}
