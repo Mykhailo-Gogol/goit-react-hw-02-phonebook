@@ -18,27 +18,31 @@ class App extends Component {
   };
 
   componentDidMount() {
-    const getContactArrayLS = localStorage.getItem("contacts");
-    this.setState({
-      contacts: JSON.parse(getContactArrayLS)
-        ? JSON.parse(getContactArrayLS) && this.state.contacts
-        : this.state.contacts,
-    });
+    // const getContactArrayLS = localStorage.getItem("contacts");
+    // this.setState({
+    //   contacts: JSON.parse(getContactArrayLS)
+    //     ? JSON.parse(getContactArrayLS)
+    //     : this.state.contacts,
+    // });
   }
 
   componentDidUpdate() {
-    const setContactArrayLS = JSON.stringify(this.state.contacts);
-    localStorage.setItem("contacts", setContactArrayLS);
+    // const setContactArrayLS = JSON.stringify(this.state.contacts);
+    // localStorage.setItem("contacts", setContactArrayLS);
   }
 
   userId = () => shortid.generate();
 
   formSubmitHandler = ({ name, number }) => {
-    this.setState(({ contacts }) => {
-      return {
-        contacts: [...contacts, { name, number, id: this.userId() }],
-      };
-    });
+    if (this.state.contacts.some((e) => e.name === name)) {
+      alert(`${name} is already in contacts!`);
+    } else {
+      this.setState(({ contacts }) => {
+        return {
+          contacts: [...contacts, { name, number, id: this.userId() }],
+        };
+      });
+    }
   };
 
   filterHandler = (value) => {
