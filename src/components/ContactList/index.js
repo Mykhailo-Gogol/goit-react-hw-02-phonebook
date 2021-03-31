@@ -19,7 +19,7 @@ const ContactList = (props) => {
   return (
     <>
       {contactFilter().length ? (
-        <ul className="contact-list">
+        <ol className="contact-list">
           {contactFilter().map(({ name, number, id }) => {
             return (
               <li key={uniqueId()}>
@@ -36,7 +36,7 @@ const ContactList = (props) => {
               </li>
             );
           })}
-        </ul>
+        </ol>
       ) : (
         <p>Contact list is empty</p>
       )}

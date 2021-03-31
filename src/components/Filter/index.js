@@ -1,24 +1,29 @@
 import { useState } from "react";
-const Filter = (props) => {
-  const [filter, setFilter] = useState("");
-  const [name, setName] = useState("");
-  const [value, setValue] = useState("");
+
+
+
+const Filter = ({onFilter}) => {
+  const [filter, setFilter] = useState({
+    filter: ""
+  })
+  
 
   const handleInputChange = (event) => {
-    const { name, value } = event.target;
+    const { value } = event.target;
 
-    setName(`${name}`);
-    setValue(value);
+    setFilter({
+      filter: value
+    })
   };
 
   const filterInputHandler = (event) => {
     handleInputChange(event);
-    props.onFilter(filter);
+    onFilter(filter.filter);
   };
 
   const blurHandler = (event) => {
     event.target.value = "";
-    setFilter(event.target.value);
+    setFilter({ filter: event.target.value});
   };
 
   return (
@@ -27,7 +32,7 @@ const Filter = (props) => {
         type="text"
         placeholder="search contact"
         name="filter"
-        value={filter}
+        value={filter.filter}
         onChange={filterInputHandler}
         onBlur={blurHandler}
       />

@@ -47,9 +47,9 @@ class App extends Component {
 
   filterHandler = (value) => {
     if (!!value) {
-      this.setState({
+      this.setState(({
         filter: value,
-      });
+      }));
     }
     //
     console.log("App", this.state.filter);
