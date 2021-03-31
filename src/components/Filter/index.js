@@ -1,29 +1,25 @@
 import { useState } from "react";
-
+import { debounce } from "debounce";
 
 
 const Filter = ({onFilter}) => {
-  const [filter, setFilter] = useState({
-    filter: ""
-  })
+  const [filter, setFilter] = useState('')
   
 
   const handleInputChange = (event) => {
     const { value } = event.target;
-
-    setFilter({
-      filter: value
-    })
+    debounce(setFilter(value), 500)
+    
   };
 
   const filterInputHandler = (event) => {
     handleInputChange(event);
-    onFilter(filter.filter);
+    onFilter(filter);
   };
 
   const blurHandler = (event) => {
     event.target.value = "";
-    setFilter({ filter: event.target.value});
+    setFilter(event.target.value);
   };
 
   return (
@@ -32,7 +28,7 @@ const Filter = ({onFilter}) => {
         type="text"
         placeholder="search contact"
         name="filter"
-        value={filter.filter}
+        value={filter}
         onChange={filterInputHandler}
         onBlur={blurHandler}
       />
