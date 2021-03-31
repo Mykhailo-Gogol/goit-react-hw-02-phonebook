@@ -57,6 +57,8 @@ class Form extends Component {
               name="number"
               value={this.state.number}
               id={this.numberInputId}
+              pattern="(\+?( |-|\.)?\d{1,2}( |-|\.)?)?(\(?\d{3}\)?|\d{3})( |-|\.)?(\d{3}( |-|\.)?\d{4})"
+              title="The phone number must be 11-12 digits long and can contain numbers, spaces, dashes, pot-bellied brackets and can start with +"
               required
             />
           </label>

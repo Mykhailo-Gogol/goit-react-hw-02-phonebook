@@ -8,11 +8,11 @@ import ContactList from "./components/ContactList";
 class App extends Component {
   state = {
     contacts: [
-      { name: "Beck Shepherd", number: "(974) 931-1339", id: "id-1" },
-      { name: "Izaan Buckner", number: "(201) 249-1149", id: "id-2" },
-      { name: "Kaila O'Connor", number: "(829) 270-9181", id: "id-3" },
-      { name: "Asa Craig", number: "(787) 218-3261", id: "id-4" },
-      { name: "Harriett Stark", number: "(629) 735-8430", id: "id-5" },
+      { name: "Beck Shepherd", number: "+972-493-11-39", id: "id-1" },
+      { name: "Izaan Buckner", number: "+201-124-91-49", id: "id-2" },
+      { name: "Kaila O'Connor", number: "+829-270-01-81", id: "id-3" },
+      { name: "Asa Craig", number: "+787-218-26-11", id: "id-4" },
+      { name: "Harriett Stark", number: "+629-735-84-30", id: "id-5" },
     ],
     filter: "",
   };
@@ -51,8 +51,6 @@ class App extends Component {
         filter: value,
       }));
     }
-    //
-    console.log("App", this.state.filter);
   };
 
   deleteUserHandler = (contactId) => {
