@@ -43,6 +43,8 @@ class Form extends Component {
               name="name"
               value={this.state.name}
               id={this.nameInputId}
+              pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+              title="The name can only consist of letters, apostrophes, dashes and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
               required
             />
           </label>
