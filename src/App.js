@@ -45,12 +45,10 @@ class App extends Component {
     }
   };
 
-  filterHandler = (value) => {
-    if (value) {
-      this.setState({
-        filter: value,
-      });
-    }
+  filterHandler = (event) => {
+    this.setState(() => ({
+      filter: event.target.value,
+    }));
   };
 
   deleteUserHandler = (contactId) => {
