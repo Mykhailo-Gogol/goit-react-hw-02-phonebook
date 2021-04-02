@@ -35,28 +35,28 @@ class Form extends Component {
     return (
       <>
         <form onSubmit={this.handleSubmit}>
-          <label htmlFor={this.nameInputId}>
+          <label htmlFor="name">
             <input
               type="text"
               placeholder="Name"
               onChange={this.handleInputChange}
               name="name"
               value={this.state.name}
-              id={this.nameInputId}
+              id="name"
               pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
               title="The name can only consist of letters, apostrophes, dashes and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
               required
             />
           </label>
 
-          <label htmlFor={this.numberInputId}>
+          <label htmlFor="number">
             <input
               type="tel"
               placeholder="Number"
               onChange={this.handleInputChange}
               name="number"
               value={this.state.number}
-              id={this.numberInputId}
+              id="number"
               pattern="(\+?( |-|\.)?\d{1,2}( |-|\.)?)?(\(?\d{3}\)?|\d{3})( |-|\.)?(\d{3}( |-|\.)?\d{4})"
               title="The phone number must be 11-12 digits long and can contain numbers, spaces, dashes, pot-bellied brackets and can start with +"
               required

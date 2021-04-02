@@ -1,35 +1,18 @@
-import shortid from "shortid";
-
-const ContactList = (props) => {
-  const uniqueId = () => {
-    return shortid.generate();
-  };
-
-  const contactFilter = () => {
-    const { filter, contacts } = props.appState;
-    const normalizedFilter = filter.toLowerCase();
-    const filteredArray = contacts.filter(
-      ({ name, number }) =>
-        name.toLowerCase().includes(normalizedFilter) ||
-        number.toLowerCase().includes(normalizedFilter)
-    );
-    return filteredArray;
-  };
-
+const ContactList = ({ filteredContacts, onDeleteContact }) => {
   return (
     <>
-      {contactFilter().length ? (
+      {filteredContacts().length ? (
         <ol className="contact-list">
-          {contactFilter().map(({ name, number, id }) => {
+          {filteredContacts().map(({ name, number, id }) => {
             return (
-              <li key={uniqueId()}>
+              <li key={name}>
                 <p className="contact-text">
                   <span>{name}</span>
                   <span>{number}</span>
                 </p>
                 <button
                   className="delete-button"
-                  onClick={() => props.onDeleteContact(id)}
+                  onClick={() => onDeleteContact(id)}
                 >
                   Delete
                 </button>

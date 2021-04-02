@@ -1,25 +1,22 @@
 import { useState } from "react";
-import { debounce } from "debounce";
+// import { debounce } from "debounce";
 
-
-const Filter = ({onFilter}) => {
-  const [filter, setFilter] = useState('')
-  
+const Filter = ({ onFilter }) => {
+  const [filter, setFilter] = useState("");
 
   const handleInputChange = (event) => {
     const { value } = event.target;
-    debounce(setFilter(value), 500)
-    
+    setFilter(() => value);
+  };
+
+  const blurHandler = (event) => {
+    event.target.value = "";
+    setFilter(() => event.target.value);
   };
 
   const filterInputHandler = (event) => {
     handleInputChange(event);
     onFilter(filter);
-  };
-
-  const blurHandler = (event) => {
-    event.target.value = "";
-    setFilter(event.target.value);
   };
 
   return (
