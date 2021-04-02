@@ -8,11 +8,6 @@ const Filter = ({ onFilter }) => {
     setFilter(event.target.value);
   };
 
-  // const blurHandler = (event) => {
-  //   event.target.value = "";
-  //   setFilter(() => event.target.value);
-  // };
-
   const filterInputHandler = (event) => {
     handleInputChange(event);
     onFilter(event);
@@ -26,7 +21,7 @@ const Filter = ({ onFilter }) => {
         name="filter"
         value={filter}
         onChange={filterInputHandler}
-        // onBlur={blurHandler}
+        // onBlur={() => setFilter("")}
       />
     </div>
   );

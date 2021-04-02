@@ -5,15 +5,11 @@ import Form from "./components/Form";
 import Filter from "./components/Filter";
 import ContactList from "./components/ContactList";
 
+import contacts from "./data/contacts.json";
+
 class App extends Component {
   state = {
-    contacts: [
-      { name: "Beck Shepherd", number: "972-493-11-39", id: "id-1" },
-      { name: "Izaan Buckner", number: "201-124-91-49", id: "id-2" },
-      { name: "Kaila O'Connor", number: "829-270-01-81", id: "id-3" },
-      { name: "Asa Craig", number: "787-218-26-11", id: "id-4" },
-      { name: "Harriett Stark", number: "629-735-84-30", id: "id-5" },
-    ],
+    contacts: contacts,
     filter: "",
   };
 
