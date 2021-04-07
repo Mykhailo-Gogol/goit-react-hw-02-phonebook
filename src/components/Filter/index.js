@@ -1,30 +1,40 @@
-import { useState } from "react";
-// import { debounce } from "debounce";
+import { Component } from "react";
+import { PropTypes } from "prop-types";
 
-const Filter = ({ onFilter }) => {
-  const [filter, setFilter] = useState("");
-
-  const handleInputChange = (event) => {
-    setFilter(event.target.value);
+class Filter extends Component {
+  state = {
+    filter: "",
   };
 
-  const filterInputHandler = (event) => {
-    handleInputChange(event);
-    onFilter(event);
+  handleInputChange = (event) => {
+    this.setState({
+      filter: event.target.value,
+    });
   };
 
-  return (
-    <div>
-      <input
-        type="text"
-        placeholder="search contact"
-        name="filter"
-        value={filter}
-        onChange={filterInputHandler}
-        // onBlur={() => setFilter("")}
-      />
-    </div>
-  );
+  filterInputHandler = (event) => {
+    const { onFilter } = this.props;
+    this.handleInputChange(event);
+    onFilter(event.target.value);
+  };
+
+  render() {
+    return (
+      <div>
+        <input
+          type="text"
+          placeholder="search contact"
+          name="filter"
+          value={this.state.filter}
+          onChange={this.filterInputHandler}
+        />
+      </div>
+    );
+  }
+}
+
+Filter.propTypes = {
+  onFilter: PropTypes.func.isRequired,
 };
 
 export default Filter;

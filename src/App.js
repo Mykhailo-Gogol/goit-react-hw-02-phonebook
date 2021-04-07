@@ -1,6 +1,7 @@
 import "./App.css";
-import React, { Component } from "react";
+import { Component } from "react";
 import shortid from "shortid";
+
 import Form from "./components/Form";
 import Filter from "./components/Filter";
 import ContactList from "./components/ContactList";
@@ -14,23 +15,25 @@ class App extends Component {
   };
 
   componentDidMount() {
-    // const getContactArrayLS = localStorage.getItem("contacts");
-    // this.setState({
-    //   contacts: JSON.parse(getContactArrayLS)
-    //     ? JSON.parse(getContactArrayLS)
-    //     : this.state.contacts,
-    // });
+    const { contacts } = this.state;
+    const getContactArrayLS = localStorage.getItem("contacts");
+    this.setState({
+      contacts: JSON.parse(getContactArrayLS)
+        ? JSON.parse(getContactArrayLS)
+        : contacts,
+    });
   }
 
   componentDidUpdate() {
-    // const setContactArrayLS = JSON.stringify(this.state.contacts);
-    // localStorage.setItem("contacts", setContactArrayLS);
+    const { contacts } = this.state;
+    const setContactArrayLS = JSON.stringify(contacts);
+    localStorage.setItem("contacts", setContactArrayLS);
   }
 
-  // userId = () => shortid.generate();
-
   formSubmitHandler = ({ name, number }) => {
-    if (this.state.contacts.some((e) => e.name === name)) {
+    const { contacts } = this.state;
+
+    if (contacts.some((e) => e.name === name)) {
       alert(`${name} is already in contacts!`);
     } else {
       this.setState(({ contacts }) => {
@@ -41,9 +44,9 @@ class App extends Component {
     }
   };
 
-  filterHandler = (event) => {
+  filterHandler = (value) => {
     this.setState(() => ({
-      filter: event.target.value,
+      filter: value,
     }));
   };
 

@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+import { Component } from "react";
+import { PropTypes } from "prop-types";
 import shortid from "shortid";
 
 class Form extends Component {
@@ -32,6 +33,7 @@ class Form extends Component {
   };
 
   render() {
+    const { number } = this.state;
     return (
       <>
         <form onSubmit={this.handleSubmit}>
@@ -55,7 +57,7 @@ class Form extends Component {
               placeholder="Number"
               onChange={this.handleInputChange}
               name="number"
-              value={this.state.number}
+              value={number}
               id="number"
               pattern="(\+?( |-|\.)?\d{1,2}( |-|\.)?)?(\(?\d{3}\)?|\d{3})( |-|\.)?(\d{3}( |-|\.)?\d{4})"
               title="The phone number must be 11-12 digits long and can contain numbers, spaces, dashes, pot-bellied brackets and can start with +"
@@ -69,5 +71,9 @@ class Form extends Component {
     );
   }
 }
+
+Form.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};
 
 export default Form;
